@@ -1,7 +1,3 @@
-// ----------------------------------------------
-// These are the only libraries that can be 
-// used. Under no circumstances can additional 
-// libraries be included
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -27,8 +23,7 @@ int main( int argc, char** argv ) {
     command_t command;
 
     // -------------------------------------------
-    // Go ahead and allocate memory
-    // makes things less complicated :)
+    // Allocating memory
     command.path = malloc(sizeof(char)*100);
     command.argv = malloc(sizeof(char*)*50);
     for ( i=0; i<50; i++ ) command.argv[i] = malloc(sizeof(char)*100);
