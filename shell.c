@@ -1,10 +1,3 @@
-// PID: 730446034
-// I pledge the COMP211 honor code.
-
-// ----------------------------------------------
-// These are the only libraries that can be 
-// used. Under no circumstances can additional 
-// libraries be included.
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,7 +12,6 @@ const char* valid_builtin_commands[] = {"cd", "exit", NULL};
 
 
 void parse( char* line, command_t* p_cmd ) {
-    // TO-DO: COMPLETE THIS FUNCTION BODY
     int argc_value = 0; // To count how many arguments and command was typed in the line.
 
     /* Allocating memory initially when the path is NULL */
@@ -80,7 +72,6 @@ void parse( char* line, command_t* p_cmd ) {
 
 
 int find_fullpath( char* command_name, command_t* p_cmd ) {
-    // TO-DO: COMPLETE THIS FUNCTION BODY
     int exists = FALSE;
 
     char* path_env_variable;
@@ -125,7 +116,6 @@ int find_fullpath( char* command_name, command_t* p_cmd ) {
 
 
 int execute( command_t* p_cmd ) {
-    // TO-DO: COMPLETE THIS FUNCTION BODY
     int status = SUCCESSFUL;
     int child_process_status;
     pid_t child_pid;
