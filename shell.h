@@ -76,25 +76,11 @@ or cp, using the execv system function. In the execute function, you must fork
 a child process. 
 
  HINT(s): 
- (1) An example is provided that demonstrates how the fork and wait operations 
- 	are coded (see "Executing a Command" section in assignment writeup).
- (2) The execv is assuming the full path name for the cmd is provided (i.e. the 
+ (1) The execv is assuming the full path name for the cmd is provided (i.e. the 
  	exact file location, starting from / or the root folder). For instance, simply 
  	providing the "pwd" cmd is equivalent to "./pwd" (i.e. pwd cmd is located in 
  	the same folder as parent process). Instead, the full path (/bin/pwd) must be 
- 	given. An incomplete code segment is provided below.
-
-			if ( p_cmd->argc > 0 ) {
-				if ( fork() == 0 ) {
-					execv( p_cmd->path, p_cmd->argv );
-					...
-				}
-				wait( ... );
-			} else if ( p_cmd->argc == -1 ) {
-				// display to user cmd not found
-			}
-
-
+ 	given.
  
  function:
 	- parameter(s): pointer to a command_t structure
@@ -119,10 +105,6 @@ HINT(s): Use the getenv() system function to retrieve the folders defined in the
 
 		The format of the PATH is very simple, the ':' character is delimiter, 
 		i.e. used to mark the beginning and end of a folder defined in the path.
-
-		Write a loop that parses each folder defined in the path, then uses this 
-		folder along with the stat function (see "File/Directory Status" section 
-		in the assignment writeup).
  
  function:
 	- parameter(s): char* pointer that has named command (e.g. ls), and a pointer 
@@ -140,8 +122,6 @@ int find_fullpath( char* command_name, command_t* p_cmd );
 This function will determine if the command (cmd for short) entered in the shell by 
 the user is a valid builtin command.
 
-HINT(s): Use valid_builtin_commands array defined in shell.c
-
 function:
 	- parameter(s): pointer to a command_t structure
 	- return: TRUE if the cmd is in array, else FALSE if not in array. 
@@ -152,8 +132,6 @@ int is_builtin( command_t* p_cmd );
 /* ------------------------------------------------------------------------------
 
 This function is used execute built-in commands such as change directory (cd)
-
-HINT(s): See man page for more information about chdir function 
 
 function:
 	- parameter(s): pointer to a command_t structure
@@ -168,8 +146,6 @@ int do_builtin( command_t* p_cmd );
 This function is used to free memory that may be malloc'd for the name and argv 
 fields in the command_t structure.  To be safe, you should also set the pointer 
 values to NULL.
- 
-HINT(s): See man page for more information about free function
  
 function:
 	- parameter(s): pointer to a command_t structure
